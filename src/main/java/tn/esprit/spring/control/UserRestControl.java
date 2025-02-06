@@ -29,6 +29,7 @@ public class UserRestControl {
 	@GetMapping("/retrieve-user/{user-id}")
 	public User retrieveUser(@PathVariable("user-id") String userId) {
 		return userService.retrieveUser(userId);
+
 	}
 	
 	 
@@ -36,7 +37,8 @@ public class UserRestControl {
 	// Ajouter User : http://localhost:????/timesheet-devops/add-user 
 	@PostMapping("/add-user")
 	public User addUser(@RequestBody User u) {
-		User user = userService.addUser(u); 
+		User user = userService.addUser(u);
+		System.out.println("test merge");
 		return user;
 	}
 
