@@ -1,25 +1,35 @@
 pipeline {
     agent any
 
+    environment {
+        MAVEN_HOME = '/usr/share/maven' // Adapt if needed
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/user/repository.git'
+                git 'https://github.com/hamza10tn/atelier-git.git'
             }
         }
 
         stage('Build') {
             steps {
                 sh 'echo "Building the project..."'
-                // Exemple pour un projet Node.js
-                sh 'npm install'
+                sh 'mvn clean compile'
             }
         }
 
         stage('Test') {
             steps {
                 sh 'echo "Running tests..."'
-                sh 'npm test' // Exécute les tests
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                sh 'echo "Packaging the application..."'
+                sh 'mvn package'
             }
         }
 
@@ -29,14 +39,18 @@ pipeline {
             }
             steps {
                 sh 'echo "Deploying the application..."'
-                // Ajoute ici les commandes de déploiement
+                // Example for copying the JAR somewhere
+                // sh 'scp target/*.jar user@server:/path/to/deploy'
             }
         }
     }
 
     post {
-        always {
-            echo 'Pipeline terminé.'
+        success {
+            echo '✅ Build successful!'
+        }
+        failure {
+            echo '❌ Build failed.'
         }
     }
 }
