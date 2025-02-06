@@ -1,56 +1,36 @@
 pipeline {
-    agent any
 
-    environment {
-        MAVEN_HOME = '/usr/share/maven' // Adapt if needed
+ agent any
+
+ tools { 
+        jdk 'JAVA_HOME' 
+        maven 'M2_HOME' 
     }
 
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/hamza10tn/atelier-git.git'
-            }
-        }
+ stages {
 
-        stage('Build') {
-            steps {
-                sh 'echo "Building the project..."'
-                sh 'mvn clean compile'
-            }
-        }
+ stage('GIT') {
 
-        stage('Test') {
-            steps {
-                sh 'echo "Running tests..."'
-                sh 'mvn test'
-            }
-        }
+           steps {
 
-        stage('Package') {
-            steps {
-                sh 'echo "Packaging the application..."'
-                sh 'mvn package'
-            }
-        }
+               git branch: 'main',
 
-        stage('Deploy') {
-            when {
-                branch 'main'
-            }
-            steps {
-                sh 'echo "Deploying the application..."'
-                // Example for copying the JAR somewhere
-                // sh 'scp target/*.jar user@server:/path/to/deploy'
-            }
-        }
-    }
+               url: 'https://github.com/hamza10tn/atelier-git.git'
 
-    post {
-        success {
-            echo '✅ Build successful!'
-        }
-        failure {
-            echo '❌ Build failed.'
-        }
-    }
+          }
+
+     }
+
+ stage ('Compile Stage') {
+
+ steps {
+
+ sh 'mvn clean compile'
+
+ }
+
+ }
+
+ }
+
 }
