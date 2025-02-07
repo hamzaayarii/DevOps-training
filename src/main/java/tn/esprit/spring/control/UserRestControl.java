@@ -21,6 +21,7 @@ public class UserRestControl {
 	// URL : http://localhost:????/????/????/retrieve-all-users
 	@GetMapping("/retrieve-all-users")
 	public List<User> retrieveAllUsers() {
+		System.out.println("test merge1");
 		return userService.retrieveAllUsers();
 		//return list;
 	}
