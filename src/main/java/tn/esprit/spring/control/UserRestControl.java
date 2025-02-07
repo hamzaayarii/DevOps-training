@@ -21,7 +21,7 @@ public class UserRestControl {
 	// URL : http://localhost:????/????/????/retrieve-all-users
 	@GetMapping("/retrieve-all-users")
 	public List<User> retrieveAllUsers() {
-		System.out.println("Change from main branch");
+		System.out.println("test main branch");
 		return userService.retrieveAllUsers();
 		//return list;
 	}
