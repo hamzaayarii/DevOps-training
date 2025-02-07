@@ -21,7 +21,7 @@ public class UserRestControl {
 	// URL : http://localhost:????/????/????/retrieve-all-users
 	@GetMapping("/retrieve-all-users")
 	public List<User> retrieveAllUsers() {
-		System.out.println("test main branch");
+		System.out.println("hello from merged version");
 		return userService.retrieveAllUsers();
 		//return list;
 	}
@@ -30,6 +30,7 @@ public class UserRestControl {
 	@GetMapping("/retrieve-user/{user-id}")
 	public User retrieveUser(@PathVariable("user-id") String userId) {
 		return userService.retrieveUser(userId);
+
 	}
 	
 	 
@@ -37,7 +38,8 @@ public class UserRestControl {
 	// Ajouter User : http://localhost:????/timesheet-devops/add-user 
 	@PostMapping("/add-user")
 	public User addUser(@RequestBody User u) {
-		User user = userService.addUser(u); 
+		User user = userService.addUser(u);
+		System.out.println("test merge");
 		return user;
 	}
 
