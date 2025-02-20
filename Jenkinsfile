@@ -1,36 +1,33 @@
+
 pipeline {
+    agent any
 
- agent any
-
- tools { 
+    tools { 
         jdk 'JAVA_HOME' 
         maven 'M2_HOME' 
     }
 
- stages {
+    stages {
+        stage('GIT') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/hamza10tn/atelier-git.git'
+            }
+        }
 
- stage('GIT') {
+        stage('Compile Stage') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
 
-           steps {
-
-               git branch: 'main',
-
-               url: 'https://github.com/hamza10tn/atelier-git.git'
-
-          }
-
-     }
-
- stage ('Compile Stage') {
-
- steps {
-
- sh 'mvn clean compile'
-
- }
-
- }
-
- }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
+    }
 
 }
