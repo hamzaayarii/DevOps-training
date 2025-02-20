@@ -23,7 +23,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                sh 'mvn sonar:sonar -Dsonar.login-admin -Dsonar.fY4u^E5TATUb7!4ntm -Dmaven.test.skip=true';
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=fY4u^E5TATUb7!4ntm -Dmaven.test.skip=true';
             }
         }
     }
