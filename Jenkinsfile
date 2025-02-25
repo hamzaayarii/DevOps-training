@@ -32,20 +32,14 @@ pipeline {
          }
 
 
-          stage('Deploy to Nexus') {
-                     steps {
-                         script {
-                             withCredentials([usernamePassword(credentialsId: 'nexus-credentials', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
-                                 sh """
-                                 mvn deploy -DaltDeploymentRepository=nexus::default::http://your-nexus-server:8083/repository/maven-releases/ \
-                                            -DrepositoryId=nexus \
-                                            -Dnexus.username=${NEXUS_USER} \
-                                            -Dnexus.password=${NEXUS_PASS}
-                                 """
-                             }
-                         }
-                     }
-          }
+         stage('Deploy to Nexus') {
+             steps {
+                 sh """
+                 mvn deploy -DaltDeploymentRepository=nexus::default::http://192.168.33.10:8083/repository/maven-releases/
+                 """
+             }
+         }
+
         
 
 }
