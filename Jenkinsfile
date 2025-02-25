@@ -35,7 +35,7 @@ pipeline {
          stage('Deploy to Nexus') {
              steps {
                  sh """
-                 mvn deploy -DaltDeploymentRepository=nexus::default::http://192.168.33.10:8083/repository/maven-releases/
+                 mvn deploy
                  """
              }
          }
