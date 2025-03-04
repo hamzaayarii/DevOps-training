@@ -37,7 +37,7 @@ pipeline {
              stage('Docker Image Build') {
                  steps {
 
-                     sh 'docker build -t timesheet:1.0.0 .'
+                     sh 'docker build -t td.jar .'
                  }
              }
 
