@@ -32,14 +32,15 @@ pipeline {
          }
 
 
-
-
-             stage('Docker Image Build') {
-                 steps {
-
-                     sh 'docker build -t td.jar .'
-                 }
-             }
+        stage('Deploy to Nexus') {
+            steps {
+                script {
+                    sh """
+                    mvn deploy -DaltDeploymentRepository=deploymentRepo::default::http://192.168.33.10:8083/repository/maven-releases/
+                    """
+                }
+            }
+        }
 
 
 
