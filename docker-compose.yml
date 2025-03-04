@@ -14,7 +14,7 @@ services:
   app-timesheet:
     depends_on:
       - mysqldb
-    image: mouradhassini/timesheet-devops:1.0.0
+    image: hamzabox/timesheet-devops:1.0.0
     #build : ./
     restart: on-failure
     ports:
