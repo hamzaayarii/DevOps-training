@@ -42,8 +42,11 @@ pipeline {
             }
         }
 
-
-
+               stage('docker image Stage') {
+                    steps {
+                        sh 'docker build -t timesheet:1.0.0 https://github.com/hamza10tn/atelier-git.git#main'
+                    }
+                }
 
 
 
