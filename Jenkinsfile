@@ -32,15 +32,7 @@ pipeline {
          }
 
 
-        stage('Deploy to Nexus') {
-            steps {
-                script {
-                    sh """
-                    mvn deploy -DaltDeploymentRepository=deploymentRepo::default::http://192.168.33.10:8083/repository/maven-releases/
-                    """
-                }
-            }
-        }
+
 
                stage('docker image Stage') {
                     steps {
