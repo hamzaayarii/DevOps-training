@@ -11,7 +11,7 @@ pipeline {
         stage('GIT') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/hamza10tn/atelier-git.git'
+                    url: 'https://github.com/hamzaayarii/DevOps-training.git'
             }
         }
 
